@@ -17,10 +17,12 @@ public class MemberDataInsert {
         Member memberA = new Member();
         memberA.setId("memberA");
         memberA.setUsername("회원A");
+        memberA.setAge(21);
 
         Member memberB = new Member();
         memberB.setId("memberB");
         memberB.setUsername("회원B");
+        memberB.setAge(322);
 
         em.persist(memberA);
         em.persist(memberB);
