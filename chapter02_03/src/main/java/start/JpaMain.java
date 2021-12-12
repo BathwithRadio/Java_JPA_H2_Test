@@ -49,5 +49,11 @@ public class JpaMain {
         List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
         System.out.println("members.size=" + members.size());
 
+        Member a = em.find(Member.class, "member1");
+        Member b = em.find(Member.class, "member1");
+
+        System.out.print("a and b are same :: ");
+        System.out.println(a == b);
+
     }
 }
