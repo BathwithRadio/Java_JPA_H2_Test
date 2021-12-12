@@ -1,9 +1,6 @@
 package start;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -21,7 +18,6 @@ public class JpaMain {
 
         try {
 
-
             tx.begin(); //트랜잭션 시작
             logic(em);  //비즈니스 로직
             tx.commit();//트랜잭션 커밋
@@ -38,28 +34,20 @@ public class JpaMain {
 
     public static void logic(EntityManager em) {
 
-        String id = "id1";
         Member member = new Member();
-        member.setId(id);
-        member.setUsername("지한");
-        member.setAge(2);
+        member.setId("member1");
+        member.setUsername("회원1");
 
         //등록
         em.persist(member);
 
-        //수정
-        member.setAge(20);
-
         //한 건 조회
-        Member findMember = em.find(Member.class, id);
-        System.out.println("findMember=" + findMember.getUsername() + ", age=" + findMember.getAge());
+        Member findMember = em.find(Member.class, "member1");
+        System.out.println("findMember=" + findMember.getUsername());
 
         //목록 조회
-        List<Member> members = em.createQuery("select m from start.Member m", Member.class).getResultList();
+        List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
         System.out.println("members.size=" + members.size());
-
-        //삭제
-        em.remove(member);
 
     }
 }
