@@ -12,7 +12,7 @@ import javax.persistence.Table;
  * Date: 13. 5. 24. Time: 오후 7:43
  */
 @Entity
-//@DynamicUpdate
+@DynamicUpdate
 @Table(name="MEMBER")
 public class Member {
 
