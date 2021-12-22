@@ -9,6 +9,8 @@ repositories {
     mavenCentral()
 }
 
+ext["log4j2.version"] = "2.15.0"
+
 dependencies {
     implementation 'org.hibernate:hibernate-entitymanager:4.3.10.Final'
     implementation 'com.h2database:h2:1.4.187'
