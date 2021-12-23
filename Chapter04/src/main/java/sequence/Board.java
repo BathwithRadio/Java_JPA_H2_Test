@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -20,6 +21,15 @@ public class Board {
             generator = "BOARD_SEQ_GENERATOR")
     private Long id;
     private String name;
+
+    @Temporal(TemporalType.DATE)
+    private Date date;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date time;
+
+    @Transient
+    private String transientVal;
 }
 
 

@@ -1,4 +1,5 @@
 rootProject.name = 'Java_JPA_H2_Test'
 include 'chapter02_03'
 include 'Chapter04'
+include 'Chapter05_1'
 

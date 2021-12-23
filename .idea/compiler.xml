@@ -8,6 +8,8 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.10/625fc0055674dff70dbc76efa36d0f2c89b04a24/lombok-1.18.10.jar" />
         </processorPath>
         <module name="Java_JPA_H2_Test.Chapter04.test" />
+        <module name="Java_JPA_H2_Test.Chapter05_1.test" />
+        <module name="Java_JPA_H2_Test.Chapter05_1.main" />
         <module name="Java_JPA_H2_Test.Chapter04.main" />
       </profile>
     </annotationProcessing>
