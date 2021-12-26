@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JpaMain {
@@ -40,7 +41,6 @@ public class JpaMain {
         //
         //팀1 저장
         Team team1 = new Team("team1", "팀1");
-        em.persist(team1);
 
         //회원1
         Member member1 = new Member("member1", "회원1", team1);
@@ -48,7 +48,13 @@ public class JpaMain {
         //회원2
         Member member2 = new Member("member2", "회원2", team1);
         em.persist(member2);
-//
+
+        // 이걸 추가해야한다고??
+        team1.getMembers().add(member1);
+        team1.getMembers().add(member2);
+        em.persist(team1);
+
+//        team1.setMembers(members);
 //        member1.setTeam(null);
 //        member2.setTeam(null);
 //        em.remove(team1);
@@ -59,13 +65,13 @@ public class JpaMain {
         Member member1 = em.find(Member.class, "member1");
         System.out.println(member1.getId());
         System.out.println(member1.getUsername());
-//        System.out.println(member1.getTeam().getName());
+        System.out.println(member1.getTeam().getName());
         System.out.println("======================");
 
         Member member2 = em.find(Member.class, "member2");
         System.out.println(member2.getId());
         System.out.println(member2.getUsername());
-//        System.out.println(member2.getTeam().getName());
+        System.out.println(member2.getTeam().getName());
         System.out.println("======================");
     }
 
@@ -105,6 +111,7 @@ public class JpaMain {
 
     public static void biDirection(EntityManager em) {
         //
+        System.out.println("biDirection 호출");
         Team team = em.find(Team.class, "team1");
         List<Member> members = team.getMembers();
         for (Member mem : members) {
