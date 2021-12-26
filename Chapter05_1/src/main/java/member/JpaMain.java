@@ -20,6 +20,10 @@ public class JpaMain {
 
             tx.begin(); //트랜잭션 시작
             testSave(em);  //등록
+//            deleteRelation(em);
+//            findAllObject(em);
+//            finaAllJPQL(em);
+            biDirection(em);
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -33,9 +37,82 @@ public class JpaMain {
     }
 
     public static void testSave(EntityManager em) {
+        //
+        //팀1 저장
+        Team team1 = new Team("team1", "팀1");
+        em.persist(team1);
 
-        Member member = new Member();
+        //회원1
+        Member member1 = new Member("member1", "회원1", team1);
+        em.persist(member1);
+        //회원2
+        Member member2 = new Member("member2", "회원2", team1);
+        em.persist(member2);
+//
+//        member1.setTeam(null);
+//        member2.setTeam(null);
+//        em.remove(team1);
+    }
 
+    public static void findAllObject(EntityManager em) {
+        //
+        Member member1 = em.find(Member.class, "member1");
+        System.out.println(member1.getId());
+        System.out.println(member1.getUsername());
+//        System.out.println(member1.getTeam().getName());
+        System.out.println("======================");
 
+        Member member2 = em.find(Member.class, "member2");
+        System.out.println(member2.getId());
+        System.out.println(member2.getUsername());
+//        System.out.println(member2.getTeam().getName());
+        System.out.println("======================");
+    }
+
+    public static void finaAllJPQL(EntityManager em) {
+        //
+        String jpql = "select m from Member m join m.team t where " +
+                "t.name =:teamName";
+
+        List<Member> members = em.createQuery(jpql, Member.class)
+                .setParameter("teamName", "팀1")
+                .getResultList();
+        for (Member mem : members) {
+            System.out.println(mem.getId());
+            System.out.println(mem.getUsername());
+            System.out.println(mem.getTeam().getName());
+            System.out.println("======================");
+        }
+    }
+
+    public static void updateRelation(EntityManager em) {
+        //
+        //새로운 팀
+        Team team2 = new Team("team2", "팀2");
+        em.persist(team2);
+
+        //회원1에 새로운 팀2 설정
+        Member member = em.find(Member.class, "member1");
+        member.setTeam(team2);
+    }
+
+    public static void deleteRelation(EntityManager em) {
+        //
+
+        Member member1 = em.find(Member.class, "member1");
+        member1.setTeam(null);
+    }
+
+    public static void biDirection(EntityManager em) {
+        //
+        Team team = em.find(Team.class, "team1");
+        List<Member> members = team.getMembers();
+        for (Member mem : members) {
+            System.out.println(mem.getId());
+            System.out.println(mem.getUsername());
+            System.out.println(mem.getTeam().getName());
+            System.out.println("======================");
+        }
     }
 }
+
