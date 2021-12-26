@@ -24,4 +24,18 @@ public class Member {
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private Team team;
+
+    //생성자 추가
+    public Member (String id, String username) {
+        //
+        this.id = id;
+        this.username = username;
+    }
+
+    //setter수정
+    public void setTeam(Team team) {
+        //
+        this.team = team;
+        team.getMembers().add(this);
+    }
 }

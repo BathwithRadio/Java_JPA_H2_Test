@@ -20,7 +20,7 @@ public class JpaMain {
         try {
 
             tx.begin(); //트랜잭션 시작
-            testSave(em);  //등록
+            testSave2(em);  //등록
 //            deleteRelation(em);
 //            findAllObject(em);
 //            finaAllJPQL(em);
@@ -58,6 +58,22 @@ public class JpaMain {
 //        member1.setTeam(null);
 //        member2.setTeam(null);
 //        em.remove(team1);
+    }
+
+    public static void testSave2(EntityManager em) {
+        //
+        //팀1 저장
+        Team team1 = new Team("team1", "팀1");
+        em.persist(team1);
+
+        //회원1
+        Member member1 = new Member("member1", "회원1");
+        member1.setTeam(team1);
+        em.persist(member1);
+        //회원2
+        Member member2 = new Member("member2", "회원2");
+        member2.setTeam(team1);
+        em.persist(member2);
     }
 
     public static void findAllObject(EntityManager em) {
