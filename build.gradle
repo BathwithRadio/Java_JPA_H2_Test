@@ -2,6 +2,12 @@ plugins {
     id 'java'
 }
 
+ext {
+    lombokVersion  = "1.18.10"
+}
+
+ext["log4j2.version"] = "2.15.0"
+
 group 'org.example'
 version '1.0-SNAPSHOT'
 
@@ -9,13 +15,15 @@ repositories {
     mavenCentral()
 }
 
-ext["log4j2.version"] = "2.15.0"
-
 dependencies {
     implementation 'org.hibernate:hibernate-entitymanager:4.3.10.Final'
     implementation 'com.h2database:h2:1.4.187'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+    testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
 }
 
 test {

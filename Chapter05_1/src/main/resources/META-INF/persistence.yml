@@ -1,0 +1,31 @@
+persistence:
+  xmlns: 'http://xmlns.jcp.org/xml/ns/persistence'
+  version: '2.1'
+  persistence-unit:
+    class:
+      - member.Member
+      - member.Team
+    properties:
+      property:
+        - name: javax.persistence.jdbc.driver
+          value: org.h2.Driver
+        - name: javax.persistence.jdbc.user
+          value: sa
+        - name: javax.persistence.jdbc.password
+          value: ''
+        - name: javax.persistence.jdbc.url
+          value: 'jdbc:h2:mem:testdb'
+        - name: hibernate.dialect
+          value: org.hibernate.dialect.H2Dialect
+        - name: hibernate.show_sql
+          value: 'true'
+        - name: hibernate.format_sql
+          value: 'true'
+        - name: hibernate.use_sql_comments
+          value: 'true'
+        - name: hibernate.id.new_generator_mappings
+          value: 'true'
+        - name: hibernate.hbm2ddl.auto
+          value: create
+    name: Java_JPA_H2_Test
+
