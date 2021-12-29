@@ -1,17 +1,17 @@
-package member;
+package OneToOne;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
 
     public static void main(String[] args) {
 
         //엔티티 매니저 팩토리 생성
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Java_JPA_H2_Test");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Java_JPA_H2_Test_Ch6");
         EntityManager em = emf.createEntityManager(); //엔티티 매니저 생성
 
         EntityTransaction tx = em.getTransaction(); //트랜잭션 기능 획득
@@ -37,13 +37,6 @@ public class JpaMain {
         Member member1 = new Member("member1");
         Member member2 = new Member("member2");
 
-        Team team1 = new Team("team1");
-        team1.getMembers().add(member1);
-        team1.getMembers().add(member2);
-
-        em.persist(member1);
-        em.persist(member2);
-        em.persist(team1);
     }
 
 }
