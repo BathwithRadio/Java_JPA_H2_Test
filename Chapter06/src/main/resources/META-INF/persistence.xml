@@ -45,9 +45,11 @@
             <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
+
     <persistence-unit name="Java_JPA_H2_Test_Ch6_2">
         <class>ManyToMany.Member</class>
         <class>ManyToMany.Product</class>
+        <class>ManyToMany.MemberProduct</class>
         <properties>
 
             <!-- 필수 속성 -->

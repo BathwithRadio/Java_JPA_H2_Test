@@ -20,8 +20,7 @@ public class JpaMain {
         try {
             tx.begin(); //트랜잭션 시작
             testSave(em);
-//            find(em);
-            findInverse(em);
+            testFind(em);
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -35,37 +34,44 @@ public class JpaMain {
     }
 
     public static void testSave(EntityManager em) {
-        //
-        Product productA = new Product();
-        productA.setId("product1");
-        productA.setName("상품A");
-
-        Member member1 = new Member("회원1");
+        //회원 저장
+        Member member1 = new Member();
         member1.setId("member1");
-        // 양방향 연관관계 설정
-        productA.getMembers().add(member1);
-        member1.getProducts().add(productA);
-
+        member1.setUserName("회원1");
         em.persist(member1);
+
+        //상품 저장
+        Product productA = new Product();
+        productA.setId("productA");
+        productA.setName("상품A");
         em.persist(productA);
+
+        //회원상품 저장
+        MemberProduct memberProduct = new MemberProduct();
+        memberProduct.setMember(member1);
+        memberProduct.setProduct(productA);
+        memberProduct.setOrderAmount(2);
+
+        em.persist(memberProduct);
     }
 
-    public static void find(EntityManager em) {
-        //
-        Member member = em.find(Member.class, "member1");
-        List<Product> products = member.getProducts();
-        for (Product product : products) {
-            System.out.println("Product name ::: " + product.getName());
-        }
+    public static void testFind(EntityManager em) {
+        //기본 키 값 생성
+        MemberProductId memberProductId = new MemberProductId();
+        memberProductId.setMember("member1");
+        memberProductId.setProduct("productA");
+
+        MemberProduct memberProduct = em.find(MemberProduct.class,
+                memberProductId);
+
+        Member member = memberProduct.getMember();
+        Product product = memberProduct.getProduct();
+
+        System.out.println("member :::: " + member.getUserName());
+        System.out.println("product :::: " + product.getName());
+        System.out.println("orderAmount :::: " + memberProduct.getOrderAmount());
+
     }
 
-    public static void findInverse(EntityManager em){
-        //
-        Product product = em.find(Product.class, "product1");
-        List<Member> members = product.getMembers();
-        for (Member member : members) {
-            System.out.println("member = " + member.getUsername());
-        }
-    }
 }
 
