@@ -1,4 +1,4 @@
-package OneToOne;
+package ManyToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,22 +6,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Locker {
+public class Product {
     //
     @Id
-    @GeneratedValue
-    @Column(name = "LOCKER_ID")
-    private Long id;
+    @Column(name = "PRODUCT_ID")
+    private String id;
 
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+    @ManyToMany(mappedBy = "products")
+    private List<Member> members;
 }

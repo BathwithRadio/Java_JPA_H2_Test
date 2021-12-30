@@ -1,4 +1,4 @@
-package OneToOne;
+package ManyToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,14 +17,16 @@ import javax.persistence.*;
 public class Member {
     //
     @Id
-    @GeneratedValue
     @Column(name = "MEMBER_ID")
-    private long id;
+    private String id;
 
     private String username;
 
-    @OneToOne(mappedBy = "member")
-    private Locker locker;
+    @ManyToMany
+    @JoinTable(name = "MEMBER_PRODUCT",
+    joinColumns = @JoinColumn(name = "MEMBER_ID"),
+    inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
+    private List<Product> products = new ArrayList<>();
 
     public Member(String username) {
         //
