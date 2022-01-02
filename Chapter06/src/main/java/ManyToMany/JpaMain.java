@@ -5,7 +5,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
 
@@ -47,30 +46,24 @@ public class JpaMain {
         em.persist(productA);
 
         //회원상품 저장
-        MemberProduct memberProduct = new MemberProduct();
-        memberProduct.setMember(member1);
-        memberProduct.setProduct(productA);
-        memberProduct.setOrderAmount(2);
-
-        em.persist(memberProduct);
+        Orders orders = new Orders();
+        orders.setMember(member1);
+        orders.setProduct(productA);
+        orders.setOrderAmount(2);
+        em.persist(orders);
     }
 
     public static void testFind(EntityManager em) {
-        //기본 키 값 생성
-        MemberProductId memberProductId = new MemberProductId();
-        memberProductId.setMember("member1");
-        memberProductId.setProduct("productA");
+        //
+        Long ordersId = 1L;
+        Orders orders = em.find(Orders.class, ordersId);
 
-        MemberProduct memberProduct = em.find(MemberProduct.class,
-                memberProductId);
-
-        Member member = memberProduct.getMember();
-        Product product = memberProduct.getProduct();
+        Member member = orders.getMember();
+        Product product = orders.getProduct();
 
         System.out.println("member :::: " + member.getUserName());
         System.out.println("product :::: " + product.getName());
-        System.out.println("orderAmount :::: " + memberProduct.getOrderAmount());
-
+        System.out.println("orderAmount :::: " + orders.getOrderAmount());
     }
 
 }

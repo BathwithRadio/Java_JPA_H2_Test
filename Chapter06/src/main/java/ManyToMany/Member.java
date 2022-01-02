@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,5 +21,5 @@ public class Member {
     private String userName;
     //역방향
     @OneToMany(mappedBy = "member")
-    private List<MemberProduct> memberProducts;
+    private List<Orders> orders;
 }

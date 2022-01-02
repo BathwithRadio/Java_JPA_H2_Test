@@ -12,18 +12,20 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@IdClass(MemberProductId.class)
-public class MemberProduct {
+public class Orders {
     //
     @Id
+    @GeneratedValue
+    @Column(name = "ORDERS_ID")
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    private Member member; //MemberProductId.member와 연결
+    private Member member;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "PRODUCT_ID")
-    private Product product; //MemberProductId.product와 연결
+    private Product product;
 
     private int orderAmount;
 }

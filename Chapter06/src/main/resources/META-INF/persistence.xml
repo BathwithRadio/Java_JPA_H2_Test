@@ -49,7 +49,7 @@
     <persistence-unit name="Java_JPA_H2_Test_Ch6_2">
         <class>ManyToMany.Member</class>
         <class>ManyToMany.Product</class>
-        <class>ManyToMany.MemberProduct</class>
+        <class>ManyToMany.Orders</class>
         <properties>
 
             <!-- 필수 속성 -->
