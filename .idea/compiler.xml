@@ -10,10 +10,12 @@
         <module name="Java_JPA_H2_Test.Chapter04.test" />
         <module name="Java_JPA_H2_Test.Chapter05_1.main" />
         <module name="Java_JPA_H2_Test.Chapter06.main" />
+        <module name="Java_JPA_H2_Test.Chapter07.test" />
         <module name="Java_JPA_H2_Test.test" />
         <module name="Java_JPA_H2_Test.main" />
         <module name="Java_JPA_H2_Test.Chapter06.test" />
         <module name="Java_JPA_H2_Test.Chapter05_1.test" />
+        <module name="Java_JPA_H2_Test.Chapter07.main" />
         <module name="Java_JPA_H2_Test.Chapter04.main" />
       </profile>
     </annotationProcessing>
