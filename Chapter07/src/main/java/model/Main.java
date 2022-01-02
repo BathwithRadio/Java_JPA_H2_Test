@@ -1,15 +1,14 @@
 package model;
 
+import model.entity.item.Album;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-/**
- * Created by 1001218 on 15. 4. 5..
- */
 public class Main {
-
+    //
     public static void main(String[] args) {
 
         //엔티티 매니저 팩토리 생성
@@ -22,6 +21,7 @@ public class Main {
 
             tx.begin(); //트랜잭션 시작
             //TODO 비즈니스 로직
+            saveAlbum(em);
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -34,4 +34,9 @@ public class Main {
         emf.close(); //엔티티 매니저 팩토리 종료
     }
 
+    public static void saveAlbum(EntityManager em) {
+        //
+        Album album1 = new Album("Artist", "ETC");
+        em.persist(album1);
+    }
 }

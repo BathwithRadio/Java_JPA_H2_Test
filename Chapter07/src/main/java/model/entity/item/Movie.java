@@ -1,33 +1,21 @@
 package model.entity.item;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
-/**
- * Created by holyeye on 2014. 3. 11..
- */
+@Getter
+@Setter
 @Entity
 @DiscriminatorValue("M")
+@PrimaryKeyJoinColumn(name = "BOOK_ID")
 public class Movie extends Item {
-
+    //
     private String director;
     private String actor;
-
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
-    public String getActor() {
-        return actor;
-    }
-
-    public void setActor(String actor) {
-        this.actor = actor;
-    }
 
     @Override
     public String toString() {

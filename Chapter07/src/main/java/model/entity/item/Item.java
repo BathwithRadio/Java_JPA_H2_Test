@@ -1,17 +1,17 @@
 package model.entity.item;
 
+import lombok.Getter;
+import lombok.Setter;
 import model.entity.Category;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by holyeye on 2014. 3. 11..
- */
-
+@Getter
+@Setter
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "DTYPE")
 public abstract class Item {
 
@@ -25,47 +25,6 @@ public abstract class Item {
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<Category>();
-
-    //Getter, Setter
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
 
     @Override
     public String toString() {
