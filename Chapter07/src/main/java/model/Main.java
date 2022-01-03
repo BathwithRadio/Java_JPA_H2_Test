@@ -1,5 +1,7 @@
 package model;
 
+import model.entity.idclass.Parent;
+import model.entity.idclass.ParentId;
 import model.entity.item.Album;
 
 import javax.persistence.EntityManager;
@@ -21,7 +23,9 @@ public class Main {
 
             tx.begin(); //트랜잭션 시작
             //TODO 비즈니스 로직
-            saveAlbum(em);
+//            saveAlbum(em);
+            saveParent(em);
+            findParent(em);
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -38,5 +42,20 @@ public class Main {
         //
         Album album1 = new Album("Artist", "ETC");
         em.persist(album1);
+    }
+
+    public static void saveParent(EntityManager em) {
+        //
+        Parent parent = new Parent();
+        parent.setId1("myId1");
+        parent.setId2("myId2");
+        parent.setName("parentName");
+        em.persist(parent);
+    }
+
+    public static void findParent(EntityManager em) {
+        //
+        ParentId parentId = new ParentId("myId1", "myId2");
+        Parent parent = em.find(Parent.class, parentId);
     }
 }
