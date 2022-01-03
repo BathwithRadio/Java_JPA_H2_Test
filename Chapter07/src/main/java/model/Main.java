@@ -1,5 +1,7 @@
 package model;
 
+import model.entity.embeddedId.EmParent;
+import model.entity.embeddedId.EmParentId;
 import model.entity.idclass.Parent;
 import model.entity.idclass.ParentId;
 import model.entity.item.Album;
@@ -24,8 +26,8 @@ public class Main {
             tx.begin(); //트랜잭션 시작
             //TODO 비즈니스 로직
 //            saveAlbum(em);
-            saveParent(em);
-            findParent(em);
+            saveEmbedded(em);
+            findemParent(em);
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -57,5 +59,24 @@ public class Main {
         //
         ParentId parentId = new ParentId("myId1", "myId2");
         Parent parent = em.find(Parent.class, parentId);
+    }
+
+    public static void saveEmbedded(EntityManager em) {
+        //
+        EmParent parent = new EmParent();
+        EmParentId parentId = new EmParentId("myId1", "myId2");
+        parent.setId(parentId);
+        parent.setName("parentName");
+        em.persist(parent);
+    }
+
+    public static void findemParent(EntityManager em) {
+        //
+        EmParentId parentId = new EmParentId("myId1", "myId2");
+        EmParent parent = em.find(EmParent.class, parentId);
+        System.out.println(parent.getId().getId1());
+        System.out.println(parent.getId().getId2());
+        System.out.println(parent.getName());
+        System.out.println(parentId.hashCode());
     }
 }

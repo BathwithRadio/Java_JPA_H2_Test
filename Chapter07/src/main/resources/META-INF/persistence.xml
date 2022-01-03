@@ -7,9 +7,11 @@
 <!--        <class>model.entity.item.Movie</class>-->
 <!--        <class>model.entity.item.Album</class>-->
 <!--        <class>model.entity.item.Book</class>-->
-        <class>model.entity.idclass.Parent</class>
-        <class>model.entity.idclass.ParentId</class>
-        <class>model.entity.idclass.Child</class>
+<!--        <class>model.entity.idclass.Parent</class>-->
+<!--        <class>model.entity.idclass.ParentId</class>-->
+<!--        <class>model.entity.idclass.Child</class>-->
+        <class>model.entity.embeddedId.EmParent</class>
+        <class>model.entity.embeddedId.EmParentId</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
