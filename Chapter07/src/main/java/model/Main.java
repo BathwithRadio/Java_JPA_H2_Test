@@ -1,8 +1,6 @@
 package model;
 
 import model.entity.embeddedId.EmParent;
-import model.entity.embeddedId.EmParentId;
-import model.entity.idclass.Parent;
 import model.entity.item.Album;
 
 import javax.persistence.EntityManager;
