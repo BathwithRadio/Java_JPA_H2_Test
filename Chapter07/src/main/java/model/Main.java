@@ -3,7 +3,6 @@ package model;
 import model.entity.embeddedId.EmParent;
 import model.entity.embeddedId.EmParentId;
 import model.entity.idclass.Parent;
-import model.entity.idclass.ParentId;
 import model.entity.item.Album;
 
 import javax.persistence.EntityManager;
@@ -46,20 +45,20 @@ public class Main {
         em.persist(album1);
     }
 
-    public static void saveParent(EntityManager em) {
-        //
-        Parent parent = new Parent();
-        parent.setId1("myId1");
-        parent.setId2("myId2");
-        parent.setName("parentName");
-        em.persist(parent);
-    }
-
-    public static void findParent(EntityManager em) {
-        //
-        ParentId parentId = new ParentId("myId1", "myId2");
-        Parent parent = em.find(Parent.class, parentId);
-    }
+//    public static void saveParent(EntityManager em) {
+//        //
+//        Parent parent = new Parent();
+//        parent.setId1("myId1");
+//        parent.setId2("myId2");
+//        parent.setName("parentName");
+//        em.persist(parent);
+//    }
+//
+//    public static void findParent(EntityManager em) {
+//        //
+//        ParentId parentId = new ParentId("myId1", "myId2");
+//        Parent parent = em.find(Parent.class, parentId);
+//    }
 
     public static void saveEmbedded(EntityManager em) {
         //
