@@ -8,6 +8,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@Table(name = "BOARD")
+@SecondaryTable(name = "BOARD_DETAIL",
+    pkJoinColumns = @PrimaryKeyJoinColumn(name = "BOARD_DETAIL_ID"))
 public class Board {
     //
     @Id
@@ -17,6 +20,6 @@ public class Board {
 
     private String title;
 
-    @OneToOne(mappedBy = "board")
-    private BoardDetail boardDetail;
+    @Column(table = "BOARD_DETAIL")
+    private String content;
 }
