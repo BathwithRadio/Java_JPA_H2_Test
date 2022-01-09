@@ -21,9 +21,9 @@ public class Main {
         try {
 
             tx.begin(); //트랜잭션 시작
-            saveUserAndTeam(em);
+//            saveUserAndTeam(em);
 //            printUserAndTeam(em);
-            printUser(em);
+            proxyReturn(em);
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -56,5 +56,21 @@ public class Main {
         //
         Member member = em.find(Member.class, "Member1");
         System.out.println("회원 이름 :: " + member.getUsername());
+    }
+
+    public static void proxyReturn(EntityManager em) {
+        //
+        Member member = em.find(Member.class, "Member1");
+        Team team = em.getReference(Team.class, "Team1"); // SQL을 실행하지 않음
+        member.setTeam(team);
+        System.out.println(team.getName());
+    }
+
+    public static void proxyCompare(EntityManager em) {
+        //
+        Member member = em.find(Member.class, "Member1");
+        Team team = em.find(Team.class, "Team1"); // SQL을 실행
+        member.setTeam(team);
+        System.out.println(team.getName());
     }
 }
