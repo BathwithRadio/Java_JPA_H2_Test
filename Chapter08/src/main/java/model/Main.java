@@ -21,9 +21,10 @@ public class Main {
         try {
 
             tx.begin(); //트랜잭션 시작
-//            saveUserAndTeam(em);
+            saveUserAndTeam(em);
 //            printUserAndTeam(em);
-            proxyReturn(em);
+//            proxyLoadCheck(em);
+            findMember(em);
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -60,9 +61,8 @@ public class Main {
 
     public static void proxyReturn(EntityManager em) {
         //
-        Member member = em.find(Member.class, "Member1");
-        Team team = em.getReference(Team.class, "Team1"); // SQL을 실행하지 않음
-        member.setTeam(team);
+        Team team = em.getReference(Team.class, "Team1");
+
         System.out.println(team.getName());
     }
 
@@ -72,5 +72,21 @@ public class Main {
         Team team = em.find(Team.class, "Team1"); // SQL을 실행
         member.setTeam(team);
         System.out.println(team.getName());
+    }
+
+    public static void proxyLoadCheck(EntityManager em) {
+        //
+        Team team = em.getReference(Team.class, "Team1");
+        boolean isLoad = em.getEntityManagerFactory()
+                .getPersistenceUnitUtil().isLoaded(team);
+        System.out.println("isLoad ::: " + isLoad);
+        System.out.println("Proxy Check ::: " + team.getClass().getName());
+    }
+
+    public static void findMember(EntityManager em) {
+        //
+        Member member = em.find(Member.class, "Member1");
+        Team team = member.getTeam(); // 객체 그래프 탐색
+        System.out.println(team.getName()); // 팀 엔티티 사용
     }
 }
