@@ -4,6 +4,9 @@
     <persistence-unit name="Java_JPA_H2_Test">
         <class>model.entity.proxy.Member</class>
         <class>model.entity.proxy.Team</class>
+<!--        <class>model.entity.proxy.Order</class>-->
+        <class>model.entity.cascade.Parent</class>
+        <class>model.entity.cascade.Child</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>

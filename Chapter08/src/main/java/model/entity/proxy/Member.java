@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,8 +18,11 @@ public class Member {
     @Id
     private String id;
     private String username;
+    private Integer age;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TEAM_ID")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Team team;
+//
+//    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+//    private List<Order> orders;
 }
