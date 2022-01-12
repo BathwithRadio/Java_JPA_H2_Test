@@ -21,7 +21,7 @@ public class Main {
         try {
 
             tx.begin(); //트랜잭션 시작
-            saveUserAndTeam(em);
+//            saveUserAndTeam(em);
 //            printUserAndTeam(em);
 //            proxyLoadCheck(em);
             findMember(em);
