@@ -21,7 +21,7 @@ public class Main {
         try {
 
             tx.begin(); //트랜잭션 시작
-//            saveUserAndTeam(em);
+            saveUserAndTeam(em);
 //            printUserAndTeam(em);
 //            proxyLoadCheck(em);
             findMember(em);
@@ -87,6 +87,7 @@ public class Main {
         //
         Member member = em.find(Member.class, "Member1");
         Team team = member.getTeam(); // 객체 그래프 탐색
-        System.out.println(team.getName()); // 팀 엔티티 사용
+//        System.out.println(team.getName()); // 팀 엔티티 사용
+        team.getName();
     }
 }
