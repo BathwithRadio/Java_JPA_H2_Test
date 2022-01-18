@@ -16,10 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 public class Parent {
     //
-    @Id
-    @GeneratedValue
-    private long id;
+    public Parent(String  id){
+        this.id = id;
+    }
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
+    @Id
+    private String  id;
+
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Child> children  = new ArrayList<>();
 }

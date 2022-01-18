@@ -30,6 +30,7 @@ public class Main {
 //            proxyLoadCheck(em);
 //            findMember(em);
             saveWithCascade(em);
+//            orphanRemoval(em);
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -125,7 +126,7 @@ public class Main {
         Child child2 = new Child();
         Child child1 = new Child();
 
-        Parent parent = new Parent();
+        Parent parent = new Parent("Parent1");
         //연관관계 추가
         child1.setParent(parent);
         child1.setParent(parent);
@@ -134,5 +135,14 @@ public class Main {
         parent.getChildren().add(child2);
 
         em.persist(parent);
+
+        Parent parent1 = em.find(Parent.class, "Parent1");
+        parent1.getChildren().remove(0);
+    }
+
+    public static void orphanRemoval(EntityManager em) {
+        //
+        Parent parent = em.find(Parent.class, "Parent1");
+        parent.getChildren().remove(0);
     }
 }
